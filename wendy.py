@@ -4,6 +4,9 @@ import treq
 from lxml.html import html5parser
 from twisted.internet.task import react
 
+codes = {}
+areas = {}
+
 
 def fetch(url, headers={}, agent=False):
     if headers is not {}:
@@ -20,8 +23,8 @@ def print_response(text):
 
 
 def parse(text):
-    return "x %s" % len(text)
-    # return html5parser.document_fromstring(text)
+    print "len is %s" % len(text)
+    return html5parser.document_fromstring(text)
 
 
 def main(reactor):
@@ -29,7 +32,6 @@ def main(reactor):
         'Pages/Load_Shedding.aspx'
     resp = fetch(citypowerURI)
     resp.addCallback(parse)
-    if 'x' in resp:
-        print len(resp)
+    return resp
 
 react(main)
