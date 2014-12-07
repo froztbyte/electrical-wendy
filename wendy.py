@@ -27,8 +27,9 @@ def parse(text):
 
 
 def addAreas(parsed):
-    query = "//select[contains(@name, '$ddlSuburb')]/option"
-    elems = parsed.xpath(query)
+    elems = parsed.xpath(
+        "//h:select[contains(@name, '$ddlSuburb')]/h:option",
+        namespaces={'h': 'http://www.w3.org/1999/xhtml'})
     for elem in elems:
         k = elem.get('value')
         v = elem.text
