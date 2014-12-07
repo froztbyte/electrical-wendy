@@ -4,7 +4,6 @@ import treq
 from lxml.html import html5parser
 from twisted.internet.task import react
 
-codes = {}
 areas = {}
 
 
@@ -27,11 +26,23 @@ def parse(text):
     return html5parser.document_fromstring(text)
 
 
+def addAreas(parsed):
+    query = "//select[contains(@name, '$ddlSuburb')]/option"
+    elems = parsed.xpath(query)
+    for elem in elems:
+        k = elem.get('value')
+        v = elem.text
+        areas[k] = v
+    print repr(areas)
+    return parsed
+
+
 def main(reactor):
     citypowerURI = 'https://www.citypower.co.za/customers/' \
         'Pages/Load_Shedding.aspx'
     resp = fetch(citypowerURI)
     resp.addCallback(parse)
+    resp.addCallback(addAreas)
     return resp
 
 react(main)
