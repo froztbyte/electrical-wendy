@@ -8,7 +8,7 @@ codes = {}
 areas = {}
 
 
-def fetch(url, headers={}, agent=False):
+def fetch(url, headers={}):
     if headers is not {}:
         d = treq.get(url, headers)
     else:
