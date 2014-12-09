@@ -1,7 +1,8 @@
 Electrical Wendy
 ================
 
-A small utility to pull data about the 2014 Loadshedding cycles in South Africa.
+A small utility to pull data about the 2014 Loadshedding cycles in Johannesburg,
+South Africa.
 
 How to run
 ----------
