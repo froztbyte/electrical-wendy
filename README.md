@@ -6,7 +6,7 @@ A small utility to pull data about the 2014 Loadshedding cycles in South Africa.
 How to run
 ----------
 
-`python foo.py`
+`python foo.py` or `./foo.py`
 
 `areaFetch` -> `schedulesFetch`
 
