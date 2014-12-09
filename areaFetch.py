@@ -34,7 +34,6 @@ def addAreas(parsed):
         k = elem.get('value')
         v = elem.text
         areas[k] = v
-    print repr(areas)
     return parsed
 
 
