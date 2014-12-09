@@ -40,7 +40,8 @@ def addAreas(parsed):
     for elem in elems:
         k = elem.get('value')
         v = elem.text
-        areas[k] = v
+        if k >= 1:
+            areas[k] = v
     return areas
 
 
