@@ -40,7 +40,7 @@ def addAreas(parsed):
     for elem in elems:
         k = elem.get('value')
         v = elem.text
-        if k >= 1:
+        if u'Select a suburb' not in v:
             areas[k] = v
     return areas
 
