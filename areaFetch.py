@@ -52,8 +52,7 @@ def areaCAS(areas):
     from os import makedirs
     import json
 
-    appPath = abspath(argv[0])
-    dirPath = dirname(appPath)
+    dirPath = dirname(abspath(argv[0]))
     jsonDir = join(dirPath, 'json')
     jsonPath = join(jsonDir, 'areas.json')
     if not isdir(jsonDir):
