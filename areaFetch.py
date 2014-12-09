@@ -9,27 +9,8 @@ The purpose of this information is to attempt to reuse it in scraping the
 schedule times.
 '''
 
-import treq
-from lxml.html import html5parser
 from twisted.internet.task import react
-
-
-def fetch(url, headers={}):
-    if headers is not {}:
-        d = treq.get(url, headers)
-    else:
-        d = treq.get(url)
-    d.addCallback(lambda response: response.text())
-    d.addCallback(print_response)
-    return d
-
-
-def print_response(text):
-    return text
-
-
-def parse(text):
-    return html5parser.document_fromstring(text)
+from helpers import fetch, parse
 
 
 def addAreas(parsed):
