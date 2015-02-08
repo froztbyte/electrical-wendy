@@ -7,6 +7,7 @@ maybe it's useful
 '''
 
 from os.path import abspath, dirname, join
+from pprint import pprint
 from sys import argv
 import json
 
@@ -25,6 +26,17 @@ try:
             blocks[bl].append(j[idx])
         else:
             blocks[bl] = [j[idx]]
-    print repr(blocks)
 except ValueError:
+    print "there was some issue with some value. I'm lazy."
     pass
+
+
+if len(argv) == 2:
+    input = unicode(argv[1], 'utf-8')
+    if input in blocks:
+        print '%s areas found for input %s' % (len(blocks[input]), input)
+        print '\n'.join('  - %s' % x for x in blocks[input])
+    else:
+        print 'No areas found for input %s' % input
+else:
+    pprint(blocks)
