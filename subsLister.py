@@ -9,27 +9,14 @@ maybe it's useful
 from os.path import abspath, dirname, join
 from pprint import pprint
 from sys import argv
-import json
+
+from helpers import cacheLoad
 
 dirPath = dirname(abspath(argv[0]))
 jsonDir = join(dirPath, 'json')
 jsonPath = join(jsonDir, 'areas.json')
 
-blocks = {}
-
-try:
-    j = json.loads(open(jsonPath, 'r').readlines()[0])
-    for idx in j.iterkeys():
-        item = j[idx]
-        bl = item.split('-')[1].strip()
-        if blocks.get(bl, None) is not None:
-            blocks[bl].append(j[idx])
-        else:
-            blocks[bl] = [j[idx]]
-except ValueError:
-    print "there was some issue with some value. I'm lazy."
-    pass
-
+blocks = cacheLoad(jsonPath)
 
 if len(argv) == 2:
     input = unicode(argv[1], 'utf-8')
