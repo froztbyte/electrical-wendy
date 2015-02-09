@@ -11,6 +11,11 @@ schedule times.
 
 from twisted.internet.task import react
 from helpers import fetch, parse
+from sys import argv
+from os.path import (abspath, dirname,
+                     exists, join, isdir)
+from os import makedirs
+import json
 
 
 def addAreas(parsed):
@@ -27,12 +32,6 @@ def addAreas(parsed):
 
 
 def areaCAS(areas):
-    from sys import argv
-    from os.path import (abspath, dirname,
-                         exists, join, isdir)
-    from os import makedirs
-    import json
-
     dirPath = dirname(abspath(argv[0]))
     jsonDir = join(dirPath, 'json')
     jsonPath = join(jsonDir, 'areas.json')
@@ -46,6 +45,9 @@ def areaCAS(areas):
                 j = json.loads(jsonPath)
             except ValueError:
                 j = {}
+        '''DEBUG poke some debug to see why we sometimes get empty json'''
+        print len(j)
+        print repr(j)
         if j != areas:
             with open(jsonPath, 'w') as f:
                 f.write(json.dumps(areas))
